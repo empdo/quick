@@ -4,14 +4,13 @@ import QtQuick.Controls
 
 Rectangle {
     id: popup
-    width: 220
-    height: 260
-    implicitWidth: 220
-    implicitHeight: 260
+    implicitWidth: 230
+    implicitHeight: 270
     radius: 8
-    color: "#1a1a1a"
+    color: "transparent"
     border.color: "#ebffd9"
     border.width: 0
+
 
     Column {
         anchors.centerIn: parent
@@ -71,31 +70,4 @@ Rectangle {
         }
     }
 
-    Rectangle {
-        anchors.top: parent.top
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.leftMargin: 5
-        height: 1
-        color: textColor
-    }
-
-    // Bottom border
-    Rectangle {
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.leftMargin: 5
-        height: 1
-        color: textColor
-    }
-
-    // Left border
-    Rectangle {
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        width: 1
-        color: textColor
-    }
 }

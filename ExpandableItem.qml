@@ -12,6 +12,8 @@ Item {
     property bool iconHovered: false
     property bool popupHovered: false
 
+    property bool smoothBottom
+
     implicitWidth: iconLoader.item ? iconLoader.item.implicitWidth || iconLoader.item.width : 60
     implicitHeight: iconLoader.item ? iconLoader.item.implicitHeight || iconLoader.item.height : 40
 
@@ -26,22 +28,37 @@ Item {
         id: popup
         color: "transparent"
 
-        implicitWidth: popupContent.item ? popupContent.item.implicitWidth : 10
-        implicitHeight: popupContent.item ? popupContent.item.implicitHeight : 10
+        implicitWidth: popupLoader.item ? popupLoader.item.implicitWidth : 260
+        implicitHeight: popupLoader.item ? popupLoader.item.implicitHeight : 100
 
-        anchor.window: barWindow   // IMPORTANT: use barWindow, not bar
+        anchor.window: barWindow
 
         visible: iconHovered || popupHovered
 
         Loader {
             id: popupLoader
-            anchors.fill: parent
 
             sourceComponent: Component {
                 RoundedPopupCard {
+                    id: card
+                    smoothBottom: root.smoothBottom
+
+                    // Animate the popup appearing
+                    width: popup.visible ? implicitWidth : 0
+                    height: popup.visible ? implicitHeight : 0
+
+                    Behavior on width {
+                        NumberAnimation {
+                            duration: 200
+                            easing.type: Easing.OutCubic
+                        }
+                    }
+
                     content: Loader {
-                        anchors.fill: parent
-                        sourceComponent: popupContent  // <--- your popup
+                        id: innerLoader
+                        sourceComponent: popupContent
+                        anchors.top: parent.top
+                        anchors.left: parent.left
                     }
                 }
             }
@@ -55,11 +72,29 @@ Item {
             onEntered: popupHovered = true
             onExited: popupHovered = false
         }
+        anchor.adjustment: PopupAdjustment.None
 
         anchor.onAnchoring: {
-            var pos = root.mapToItem(barWindow.contentItem, 0, 0);
-            anchor.rect.x = barWindow.width- 1;
-            anchor.rect.y = pos.y + (root.height - height) / 2;
+            const winItem = barWindow.contentItem; 
+
+            const center = root.mapToItem(winItem, root.width / 2, root.height / 2);
+
+            anchor.rect.x = root.barWindow.width - 1;
+
+            if (root.smoothBottom) {
+                anchor.rect.y = winItem.height - popup.implicitHeight;
+            } else {
+                const pos = root.mapToItem(winItem, 0, 0);
+                anchor.rect.y = pos.y + (root.height - popup.implicitHeight) / 2;
+            }
+        }
+
+        Component.onCompleted: {
+            console.log("[PopupWindow] edge:", anchor.edge);
+            console.log("[PopupWindow] alignment:", anchor.alignment);
+            console.log("[PopupWindow] target:", anchor.target);
+            console.log("[PopupWindow] margins:", anchor.margins);
+            console.log("[PopupWindow] adjustment:", anchor.adjustment);
         }
     }
 

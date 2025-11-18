@@ -3,11 +3,6 @@ import QtQuick.Controls
 import Quickshell
 import "modules" as Modules
 
-import QtQuick
-import QtQuick.Controls
-import Quickshell
-import "modules" as Modules
-
 Item {
     id: root
     property color textColor: "#ebffd9"

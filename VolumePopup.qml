@@ -7,8 +7,8 @@ import "."
 
 Item {
     id: root
-    width: 220
-    height: 620
+    implicitWidth: 220
+    implicitHeight: 240
 
     property var popup
     property color textColor: "#ebffd9"
@@ -177,31 +177,4 @@ Item {
         }
     }
 
- //   Rectangle {
- //       anchors.top: parent.top
- //       anchors.left: parent.left
- //       anchors.right: parent.right
- //       anchors.leftMargin: 5
- //       height: 1
- //       color: textColor
- //   }
-
- //   // Bottom border
- //   Rectangle {
- //       anchors.bottom: parent.bottom
- //       anchors.left: parent.left
- //       anchors.right: parent.right
- //       anchors.leftMargin: 5
- //       height: 1
- //       color: textColor
- //   }
-
- //   // Left border
- //   Rectangle {
- //       anchors.top: parent.top
- //       anchors.bottom: parent.bottom
- //       anchors.right: parent.right
- //       width: 1
- //       color: textColor
- //   }
 }

@@ -63,19 +63,6 @@ Scope {
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
 
-                    // BOTTOM: clock
-                    ExpandableItem {
-                        id: clockItem
-                        barWindow: bar
-                        iconComponent: ClockWidget {}
-                        popupContent: Component {
-                            CalendarPopup {}
-                        }
-
-                        anchors.bottom: parent.bottom
-                        anchors.horizontalCenter: parent.horizontalCenter
-                    }
-
                     // ABOVE CLOCK: volume
                     ExpandableItem {
                         id: volumeItem
@@ -87,7 +74,34 @@ Scope {
 
                         anchors.bottom: clockItem.top
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: 8
+                        anchors.bottomMargin: 15
+                    }
+                    // BOTTOM: clock
+                    ExpandableItem {
+                        id: clockItem
+                        barWindow: bar
+                        iconComponent: ClockWidget {}
+                        popupContent: Component {
+                            CalendarPopup {}
+                        }
+
+                        anchors.bottom: powerIcon.top
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottomMargin: 65
+                    }
+
+                    ExpandableItem {
+                        id: powerIcon
+                        barWindow: bar
+                        smoothBottom: true
+                        iconComponent: PowerWidget {}
+                        popupContent: Component {
+                            PowerPopup{}
+                        }
+
+                        anchors.bottom: parent.bottom
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.bottomMargin: 25
                     }
                 }
             }
