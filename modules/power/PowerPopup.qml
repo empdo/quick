@@ -4,7 +4,8 @@ import QtQuick.Layouts
 import Quickshell.Services.Pipewire
 import "modules" as Modules
 import "."
-
+import "../components"
+ 
 Item {
     id: root
     implicitWidth: 220
@@ -13,44 +14,36 @@ Item {
     property var popup
     property color textColor: "#ebffd9"
 
-    RowLayout{
+    RowLayout {
         anchors.fill: parent
         anchors.margins: 30
-        anchors.leftMargin: 30
         spacing: 38
 
-        Label {
+        ScalingIcon {
             text: "󰍃"
-            color: textColor
-            font.pixelSize: 24
-            font.bold: true
+            color: root.textColor
             Layout.alignment: Qt.AlignBottom
         }
 
-        Label {
+        ScalingIcon {
             text: "󰒲"
-            color: textColor
-            font.pixelSize: 24
-            font.bold: true
+            color: root.textColor
             Layout.alignment: Qt.AlignBottom
         }
 
-        Label {
+        ScalingIcon {
             text: ""
-            color: textColor
-            font.pixelSize: 24
-            font.bold: true
+            color: root.textColor
             Layout.alignment: Qt.AlignBottom
         }
-
     }
 
     MouseArea {
+        anchors.fill: parent
         hoverEnabled: true
 
-        onExited: {
-            root.popup.hidePopup();
-        }
+        acceptedButtons: Qt.NoButton
+        propagateComposedEvents: true
+        onExited: root.popup.hidePopup()
     }
 }
-

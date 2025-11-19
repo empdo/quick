@@ -15,11 +15,11 @@ Item {
         anchors.centerIn: parent 
         color: root.textColor
         font.weight: Font.DemiBold
-        font.pixelSize: 18
+        font.pixelSize: 24
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
 
-        text: !Modules.AudioService.muted ? " " : " "
+        text: " "
     }
 
     MouseArea {

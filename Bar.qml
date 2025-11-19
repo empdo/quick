@@ -6,6 +6,11 @@ import Quickshell.Wayland
 
 import "."
 
+import "modules/clock"
+import "modules/power"
+import "modules/volume"
+import "modules/wallpaper"
+
 Scope {
     property color textColor: "#ebffd9"
     property color backgroundColor: "#1a1a1a"
@@ -76,6 +81,8 @@ Scope {
                         anchors.horizontalCenter: parent.horizontalCenter
                         anchors.bottomMargin: 15
                     }
+
+
                     // BOTTOM: clock
                     ExpandableItem {
                         id: clockItem
@@ -87,7 +94,17 @@ Scope {
 
                         anchors.bottom: powerIcon.top
                         anchors.horizontalCenter: parent.horizontalCenter
-                        anchors.bottomMargin: 65
+                    }
+                    ExpandableItem {
+                        id: wallpaperItem 
+                        barWindow: bar
+                        iconComponent: WallpaperIcon{}
+                        popupContent: Component {
+                            WallpaperPopup{}
+                        }
+
+                        anchors.centerIn: parent
+                        anchors.horizontalCenter: parent.horizontalCenter
                     }
 
                     ExpandableItem {
@@ -96,7 +113,7 @@ Scope {
                         smoothBottom: true
                         iconComponent: PowerWidget {}
                         popupContent: Component {
-                            PowerPopup{}
+                            PowerPopup {}
                         }
 
                         anchors.bottom: parent.bottom

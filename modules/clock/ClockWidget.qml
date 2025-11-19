@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
-import "modules" as Modules
+import "../" as Modules
 
 Item {
     id: root
@@ -18,6 +18,7 @@ Item {
 
         Label {
             color: textColor
+            font.family: "Roboto Mono"
             font.pixelSize: 20
             height: labelHeight
             width: root.width
@@ -27,6 +28,7 @@ Item {
         }
 
         Label {
+            font.family: "Roboto Mono"
             color: textColor
             font.pixelSize: 20
             width: root.width

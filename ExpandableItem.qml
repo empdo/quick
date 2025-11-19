@@ -22,6 +22,15 @@ Item {
         id: iconLoader
         anchors.centerIn: parent
         sourceComponent: iconComponent
+
+        scale: popup.visible ? 1.1 : 1.0
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: 150
+                easing.type: Easing.OutCubic
+            }
+        }
     }
 
     PopupWindow {
@@ -75,7 +84,7 @@ Item {
         anchor.adjustment: PopupAdjustment.None
 
         anchor.onAnchoring: {
-            const winItem = barWindow.contentItem; 
+            const winItem = barWindow.contentItem;
 
             const center = root.mapToItem(winItem, root.width / 2, root.height / 2);
 
@@ -85,16 +94,8 @@ Item {
                 anchor.rect.y = winItem.height - popup.implicitHeight;
             } else {
                 const pos = root.mapToItem(winItem, 0, 0);
-                anchor.rect.y = pos.y + (root.height - popup.implicitHeight) / 2;
+                anchor.rect.y = pos.y +(root.height - popup.implicitHeight) / 2;
             }
-        }
-
-        Component.onCompleted: {
-            console.log("[PopupWindow] edge:", anchor.edge);
-            console.log("[PopupWindow] alignment:", anchor.alignment);
-            console.log("[PopupWindow] target:", anchor.target);
-            console.log("[PopupWindow] margins:", anchor.margins);
-            console.log("[PopupWindow] adjustment:", anchor.adjustment);
         }
     }
 

@@ -5,6 +5,5 @@ import "modules" as Modules
 
 Scope {
     id: root
-
     Bar {}
 }

@@ -62,14 +62,14 @@ Item {
             ctx.stroke();
 
             if (root.smoothBottom) {
-              ctx.beginPath();
-              ctx.strokeStyle = root.backgroundColor;
-              ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.strokeStyle = root.backgroundColor;
+                ctx.lineWidth = 2;
 
-              ctx.moveTo(0,h);
-              ctx.lineTo(w,h);
+                ctx.moveTo(0, h);
+                ctx.lineTo(w, h);
 
-              ctx.stroke();
+                ctx.stroke();
             }
         }
     }
@@ -78,17 +78,19 @@ Item {
     Item {
         id: contentArea
         anchors {
-            fill: root
-            topMargin: root.padding / 2 - 2
+            top: parent.top
+            bottom: parent.bottom
+
+            // TOP MUST ACCOUNT FOR INNER RADIUS
+            topMargin: root.padding / 2
+
         }
     }
 
-    // Center content inside this area
     Column {
         id: contentItem
-        anchors.centerIn: contentArea
         anchors.fill: contentArea
-        spacing: 0
+        spacing: 10
     }
 
     layer.enabled: true
